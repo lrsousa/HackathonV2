@@ -6,7 +6,7 @@
 	<persistence-unit name="Hackathon2Unit" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 
-		<jta-data-source>java:/jdbc/IsucaDS</jta-data-source>
+		<jta-data-source>java:/jdbc/HackathonDS</jta-data-source>
 		
 		<class>com.stefanini.hackathon2.entidades.Livro</class>
 
