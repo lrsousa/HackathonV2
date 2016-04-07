@@ -14,15 +14,19 @@ public class Pessoa {
 	private String cpf;
 	@Column(nullable=false)
 	private String nome;
-	private Integer quantidadeEmprestimos;
 
 	public Pessoa(){}
-	
 	public Pessoa(String cpf, String nome) {
 		this.cpf = cpf;
 		this.nome = nome;
 	}
-
+	
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
 	public String getCpf() {
 		return cpf;
 	}
@@ -34,12 +38,6 @@ public class Pessoa {
 	}
 	public void setNome(String nome) {
 		this.nome = nome;
-	}
-	public Integer getQuantidadeEmprestimos() {
-		return quantidadeEmprestimos;
-	}
-	public void setQuantidadeEmprestimos(Integer quantidadeEmprestimos) {
-		this.quantidadeEmprestimos = quantidadeEmprestimos;
 	}
 
 	@Override
