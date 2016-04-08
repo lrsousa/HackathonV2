@@ -23,15 +23,10 @@ public class Pessoa {
 	@Column(nullable=false)
 	private String nome;
 	
-	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-    @JoinColumn(name="idPessoa")
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER, mappedBy="pessoa")
 	private List<Emprestimo> emprestimos;
 
 	public Pessoa(){}
-	public Pessoa(String cpf, String nome) {
-		this.cpf = cpf;
-		this.nome = nome;
-	}
 	
 	public Integer getId() {
 		return idPessoa;

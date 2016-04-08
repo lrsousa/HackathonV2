@@ -25,7 +25,6 @@
 							<p:outputLabel for="cpf" value="Cpf:"/>
 							<p:inputText id="cpf" requiredMessage="Campo obrigatório" required="true" value="#{pessoaManagedBean.pessoa.cpf}" />
 							<p:message for="cpf" />
-							
 						</p:panelGrid>
 						
 						<p:commandButton value="Salvar" process="@form" update="@form tabelaDePessoas" action="#{pessoaManagedBean.salvar()}" icon="fa fa-fw fa-save" />

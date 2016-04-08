@@ -25,8 +25,7 @@ public class Livro {
 	@Column(nullable=false)
 	private Integer paginas;
 	
-	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-    @JoinColumn(name="idLivro")
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER, mappedBy="livro")
 	private List<Emprestimo> emprestimos;
 	
 	public Livro() {

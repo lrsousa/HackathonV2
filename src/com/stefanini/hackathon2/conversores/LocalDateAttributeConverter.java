@@ -3,10 +3,12 @@ package com.stefanini.hackathon2.conversores;
 import java.sql.Date;
 import java.time.LocalDate;
 
+import javax.faces.convert.FacesConverter;
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
 
 @Converter(autoApply=true)
+@FacesConverter("conversorLocalDateToDate")
 public class LocalDateAttributeConverter implements AttributeConverter<LocalDate, Date> {
 
 	@Override

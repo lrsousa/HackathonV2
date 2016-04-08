@@ -15,26 +15,38 @@
 				</p:layoutUnit>
 				
 				<p:layoutUnit position="center">
-				
+					<h:form id="emprestimoForm">
+						<p:growl id="growl" showDetail="true" sticky="false" life="4000" />
+						<p:panelGrid columns="2">
+							<p:outputLabel for="idLivro" value="ID livro:"/>
+							<p:inputText id="idLivro" requiredMessage="Campo obrigatório" required="true" value="#{emprestimoManagedBean.emprestimo.livro.id}" /> <!-- Testar converter -->
+							<p:message for="idLivro" />
+							
+							<p:outputLabel for="idPessoa" value="ID Pessoa:"/>
+							<p:inputText id="idPessoa" requiredMessage="Campo obrigatório" required="true" value="#{emprestimoManagedBean.emprestimo.pessoa.id}" />
+							<p:message for="idPessoa" />
+						</p:panelGrid>
+						
+						<p:commandButton value="Salvar" process="@form" update="@form tabelaDeEmprestimos" action="#{emprestimoManagedBean.salvar()}" icon="fa fa-fw fa-save" />
+						<p:commandButton value="Limpar" process="@this" update="@form" action="#{emprestimoManagedBean.limpar()}" icon="fa fa-fw fa-eraser" />
+					</h:form>
+					
+					<p:dataTable id="tabelaDeEmprestimos" var="emprestimo" value="#{emprestimoManagedBean.listaDeEmprestimosCadastrados}" emptyMessage="Não existem empréstimos cadastrados" style="padding-top:20px;">
+						<p:column headerText="Id">
+				    	    <h:outputText value="#{emprestimo.id}" />
+					    </p:column>
+					    
+					    <p:column headerText="Pessoa">
+				    	    <h:outputText value="#{emprestimo.pessoa.nome}" />
+					    </p:column>
+					    
+					    <p:column headerText="Livro">
+				    	    <h:outputText value="#{emprestimo.livro.nome}" />
+					    </p:column>
+						
+					</p:dataTable>
 				</p:layoutUnit>
-				
 			</p:layout>
-		
-		<p:dataTable id="tabelaDeEmprestimos" var="emprestimo" value="#{emprestimoManagedBean.listaDeEmprestimosCadastrados}" emptyMessage="Não existem empréstimos cadastrados" style="padding-top:20px;">
-			<p:column headerText="Id">
-	    	    <h:outputText value="#{emprestimo.id}" />
-		    </p:column>
-		    
-		    <p:column headerText="Pessoa">
-	    	    <h:outputText value="#{emprestimo.pessoa.nome}" />
-		    </p:column>
-		    
-		    <p:column headerText="Livro">
-	    	    <h:outputText value="#{emprestimo.livro.nome}" />
-		    </p:column>
-			
-		</p:dataTable>
-		
 		</ui:define>
 	</ui:composition>
 	

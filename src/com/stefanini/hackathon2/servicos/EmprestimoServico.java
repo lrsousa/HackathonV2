@@ -9,6 +9,7 @@ import com.stefanini.hackathon2.entidades.Emprestimo;
 import com.stefanini.hackathon2.entidades.Livro;
 import com.stefanini.hackathon2.repositorios.EmprestimoRepositorio;
 import com.stefanini.hackathon2.repositorios.LivroRepositorio;
+import com.stefanini.hackathon2.repositorios.PessoaRepositorio;
 import com.stefanini.hackathon2.transacao.Transacional;
 
 @SuppressWarnings("all")

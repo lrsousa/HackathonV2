@@ -37,5 +37,4 @@ public class LivroRepositorio {
 	public Livro pesquisarPorID(Integer id) {
 		return entityManager.find(Livro.class, id);
 	}
-	
 }

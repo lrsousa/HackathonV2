@@ -21,36 +21,31 @@ public class Emprestimo {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer idEmprestimo;
 	
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade=CascadeType.REFRESH)
     @JoinColumn(name="idPessoa", nullable=true)
 	private Pessoa pessoa;
 	
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade=CascadeType.REFRESH)
     @JoinColumn(name="idLivro", nullable=true)
 	private Livro livro;
 
-	@Column(nullable=false)
-	@Convert(converter = LocalDateAttributeConverter.class)
-	private LocalDate dataRetirada;
-	@Column(nullable=false)
-	@Convert(converter = LocalDateAttributeConverter.class)
-	private LocalDate dataDevolucaoPrevista;
-	@Column(nullable=false)
-	@Convert(converter = LocalDateAttributeConverter.class)
-	private LocalDate dataDevolucaoEfetiva;
+//	@Column(nullable=false)
+//	@Convert(converter = LocalDateAttributeConverter.class)
+//	private LocalDate dataRetirada;
+//	@Column(nullable=false)
+//	@Convert(converter = LocalDateAttributeConverter.class)
+//	private LocalDate dataDevolucaoPrevista;
+//	@Column
+//	@Convert(converter = LocalDateAttributeConverter.class)
+//	private LocalDate dataDevolucaoEfetiva;
 	@Column
 	private Integer diasEmAtraso;
 	
-	public Emprestimo() {}
-
-	public Emprestimo(Pessoa pessoa, Livro livro, LocalDate dataRetirada, LocalDate dataDevolucaoPrevista) {
-		super();
-		this.pessoa = pessoa;
-		this.livro = livro;
-		this.dataRetirada = dataRetirada;
-		this.dataDevolucaoPrevista = dataDevolucaoPrevista;
-		this.dataDevolucaoEfetiva = null;
-		this.diasEmAtraso = null;
+	public Emprestimo() {
+		pessoa = new Pessoa();
+		livro = new Livro();
+//		this.dataRetirada = LocalDate.now();
+//		this.dataDevolucaoPrevista = dataRetirada.plusDays(4);
 	}
 
 	
@@ -72,24 +67,24 @@ public class Emprestimo {
 	public void setLivro(Livro livro) {
 		this.livro = livro;
 	}
-	public LocalDate getDataRetirada() {
-		return dataRetirada;
-	}
-	public void setDataRetirada(LocalDate dataRetirada) {
-		this.dataRetirada = dataRetirada;
-	}
-	public LocalDate getDataDevolucaoPrevista() {
-		return dataDevolucaoPrevista;
-	}
-	public void setDataDevolucaoPrevista(LocalDate dataDevolucaoPrevista) {
-		this.dataDevolucaoPrevista = dataDevolucaoPrevista;
-	}
-	public LocalDate getDataDevolucaoEfetiva() {
-		return dataDevolucaoEfetiva;
-	}
-	public void setDataDevolucaoEfetiva(LocalDate dataDevolucaoEfetiva) {
-		this.dataDevolucaoEfetiva = dataDevolucaoEfetiva;
-	}
+//	public LocalDate getDataRetirada() {
+//		return dataRetirada;
+//	}
+//	public void setDataRetirada(LocalDate dataRetirada) {
+//		this.dataRetirada = dataRetirada;
+//	}
+//	public LocalDate getDataDevolucaoPrevista() {
+//		return dataDevolucaoPrevista;
+//	}
+//	public void setDataDevolucaoPrevista(LocalDate dataDevolucaoPrevista) {
+//		this.dataDevolucaoPrevista = dataDevolucaoPrevista;
+//	}
+//	public LocalDate getDataDevolucaoEfetiva() {
+//		return dataDevolucaoEfetiva;
+//	}
+//	public void setDataDevolucaoEfetiva(LocalDate dataDevolucaoEfetiva) {
+//		this.dataDevolucaoEfetiva = dataDevolucaoEfetiva;
+//	}
 	public Integer getDiasEmAtraso() {
 		return diasEmAtraso;
 	}
