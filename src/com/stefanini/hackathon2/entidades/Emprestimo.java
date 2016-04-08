@@ -4,12 +4,15 @@ import java.time.LocalDate;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import com.stefanini.hackathon2.conversores.LocalDateAttributeConverter;
 
 @Entity
 public class Emprestimo {
@@ -27,10 +30,13 @@ public class Emprestimo {
 	private Livro livro;
 
 	@Column(nullable=false)
+	@Convert(converter = LocalDateAttributeConverter.class)
 	private LocalDate dataRetirada;
 	@Column(nullable=false)
+	@Convert(converter = LocalDateAttributeConverter.class)
 	private LocalDate dataDevolucaoPrevista;
 	@Column(nullable=false)
+	@Convert(converter = LocalDateAttributeConverter.class)
 	private LocalDate dataDevolucaoEfetiva;
 	@Column
 	private Integer diasEmAtraso;

@@ -18,9 +18,7 @@ public class EmprestimoRepositorio {
 	}
 
 	public List<Emprestimo> todosEmprestimos() {
-//		TODO listar usando outra coisa
-//		return entityManager.createQuery("select e from " + Emprestimo.class.getSimpleName() + " e").getResultList();
-		return null;
+		return entityManager.createQuery("select e from " + Emprestimo.class.getSimpleName() + " e").getResultList();
 	}
 
 	public void remover(Emprestimo emprestimo) {

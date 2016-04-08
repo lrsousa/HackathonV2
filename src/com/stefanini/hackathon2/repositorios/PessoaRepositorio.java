@@ -18,9 +18,7 @@ public class PessoaRepositorio {
 	}
 
 	public List<Pessoa> todasPessoas() {
-//		TODO listar usando outra coisa
-//		return entityManager.createQuery("select p from " + Pessoa.class.getSimpleName() + " p").getResultList();
-		return null;
+		return entityManager.createQuery("select p from " + Pessoa.class.getSimpleName() + " p").getResultList();
 	}
 
 	public void remover(Pessoa pessoa) {

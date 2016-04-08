@@ -13,6 +13,7 @@ import com.stefanini.hackathon2.util.Mensageiro;
 @ManagedBean
 @ViewScoped
 public class PessoaManagedBean {
+	
 	private Pessoa pessoa;
 	private List<Pessoa> listaDePessoasCadastradas;
 
@@ -55,6 +56,9 @@ public class PessoaManagedBean {
 	}
 
 	public Pessoa getPessoa() {
+		if(pessoa == null) {
+			limpar();
+		}
 		return pessoa;
 	}
 	public void setPessoa(Pessoa pessoa) {
