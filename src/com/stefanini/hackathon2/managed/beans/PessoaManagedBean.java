@@ -40,7 +40,7 @@ public class PessoaManagedBean {
 	}
 	
 	private void carregarListaDePessoas() {
-		setListaDePessoasCadastradas(servico.todasAsPessoasDoBanco());
+		setListaDePessoasCadastradas(servico.carregaTodasPessoasDoBanco());
 	}
 	
 	public List<Pessoa> getListaDePessoasCadastradas() {

@@ -19,7 +19,7 @@ public class PessoaRepositorio {
 
 	public List<Pessoa> todasPessoas() {
 //		TODO listar usando outra coisa
-//		return entityManager.createQuery("select l from " + Livro.class.getSimpleName() + " l").getResultList();
+//		return entityManager.createQuery("select p from " + Pessoa.class.getSimpleName() + " p").getResultList();
 		return null;
 	}
 
@@ -28,7 +28,7 @@ public class PessoaRepositorio {
 	}
 	
 	public void removerPorId(Integer id) {
-		Livro entity = entityManager.find(Pessoa.class, id);
+		Pessoa entity = entityManager.find(Pessoa.class, id);
 		entityManager.remove(entity);	
 	}
 	
@@ -36,7 +36,7 @@ public class PessoaRepositorio {
 		entityManager.merge(pessoa);	
 	}
 	
-	public Livro pesquisarPorID(Integer id) {
+	public Pessoa pesquisarPorID(Integer id) {
 		return entityManager.find(Pessoa.class, id);
 	}
 }

@@ -2,20 +2,30 @@ package com.stefanini.hackathon2.entidades;
 
 import java.time.LocalDate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
+@Entity
 public class Emprestimo {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer id;
-	@Column(nullable=false)
+	private Integer idEmprestimo;
+	
+	@ManyToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name="idPessoa", nullable=true)
 	private Pessoa pessoa;
-	@Column(nullable=false)
+	
+	@ManyToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name="idLivro", nullable=true)
 	private Livro livro;
+
 	@Column(nullable=false)
 	private LocalDate dataRetirada;
 	@Column(nullable=false)
@@ -39,10 +49,10 @@ public class Emprestimo {
 
 	
 	public Integer getId() {
-		return id;
+		return idEmprestimo;
 	}
 	public void setId(Integer id) {
-		this.id = id;
+		this.idEmprestimo = id;
 	}
 	public Pessoa getPessoa() {
 		return pessoa;

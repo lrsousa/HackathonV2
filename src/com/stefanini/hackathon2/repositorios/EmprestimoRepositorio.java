@@ -19,7 +19,7 @@ public class EmprestimoRepositorio {
 
 	public List<Emprestimo> todosEmprestimos() {
 //		TODO listar usando outra coisa
-//		return entityManager.createQuery("select l from " + Livro.class.getSimpleName() + " l").getResultList();
+//		return entityManager.createQuery("select e from " + Emprestimo.class.getSimpleName() + " e").getResultList();
 		return null;
 	}
 
@@ -28,7 +28,7 @@ public class EmprestimoRepositorio {
 	}
 	
 	public void removerPorId(Integer id) {
-		Livro entity = entityManager.find(Emprestimo.class, id);
+		Emprestimo entity = entityManager.find(Emprestimo.class, id);
 		entityManager.remove(entity);	
 	}
 	
@@ -36,7 +36,7 @@ public class EmprestimoRepositorio {
 		entityManager.merge(emprestimo);	
 	}
 	
-	public Livro pesquisarPorID(Integer id) {
+	public Emprestimo pesquisarPorID(Integer id) {
 		return entityManager.find(Emprestimo.class, id);
 	}
 	

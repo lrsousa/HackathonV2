@@ -23,7 +23,7 @@ public class PessoaServico {
 	}
 	
 	@Transacional
-	public List<Pessoa> carregaTodasAsPessoasDoBanco() {
+	public List<Pessoa> carregaTodasPessoasDoBanco() {
 		return repositorio.todasPessoas();
 	}
 	

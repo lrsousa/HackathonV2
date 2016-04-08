@@ -1,19 +1,31 @@
 package com.stefanini.hackathon2.entidades;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
+@Entity
 public class Pessoa {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer id;
+	private Integer idPessoa;
 	@Column(nullable=false)
 	private String cpf;
 	@Column(nullable=false)
 	private String nome;
+	
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+    @JoinColumn(name="idPessoa")
+	private List<Emprestimo> emprestimos;
 
 	public Pessoa(){}
 	public Pessoa(String cpf, String nome) {
@@ -22,10 +34,10 @@ public class Pessoa {
 	}
 	
 	public Integer getId() {
-		return id;
+		return idPessoa;
 	}
 	public void setId(Integer id) {
-		this.id = id;
+		this.idPessoa = id;
 	}
 	public String getCpf() {
 		return cpf;
@@ -39,13 +51,20 @@ public class Pessoa {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+	
+	public List<Emprestimo> getEmprestimos() {
+		return emprestimos;
+	}
+	public void setEmprestimos(List<Emprestimo> emprestimos) {
+		this.emprestimos = emprestimos;
+	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((cpf == null) ? 0 : cpf.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((idPessoa == null) ? 0 : idPessoa.hashCode());
 		return result;
 	}
 
@@ -63,10 +82,10 @@ public class Pessoa {
 				return false;
 		} else if (!cpf.equals(other.cpf))
 			return false;
-		if (id == null) {
-			if (other.id != null)
+		if (idPessoa == null) {
+			if (other.idPessoa != null)
 				return false;
-		} else if (!id.equals(other.id))
+		} else if (!idPessoa.equals(other.idPessoa))
 			return false;
 		return true;
 	}
