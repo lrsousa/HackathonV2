@@ -6,6 +6,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,31 +22,26 @@ public class Emprestimo {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer idEmprestimo;
 	
-	@ManyToOne(cascade=CascadeType.REFRESH)
-    @JoinColumn(name="idPessoa", nullable=true)
+	@ManyToOne(cascade=CascadeType.REFRESH, fetch = FetchType.EAGER)
+	@JoinColumn(name="cpf", nullable=true)
 	private Pessoa pessoa;
 	
-	@ManyToOne(cascade=CascadeType.REFRESH)
-    @JoinColumn(name="idLivro", nullable=true)
+	@ManyToOne(cascade=CascadeType.REFRESH, fetch = FetchType.EAGER)
+	@JoinColumn(name="idLivro", nullable=true)
 	private Livro livro;
 
-//	@Column(nullable=false)
-//	@Convert(converter = LocalDateAttributeConverter.class)
-//	private LocalDate dataRetirada;
-//	@Column(nullable=false)
-//	@Convert(converter = LocalDateAttributeConverter.class)
-//	private LocalDate dataDevolucaoPrevista;
-//	@Column
-//	@Convert(converter = LocalDateAttributeConverter.class)
-//	private LocalDate dataDevolucaoEfetiva;
+	@Column(nullable=false)
+	@Convert(converter = LocalDateAttributeConverter.class)
+	private LocalDate dataRetirada;
+	
 	@Column
-	private Integer diasEmAtraso;
+	@Convert(converter = LocalDateAttributeConverter.class)
+	private LocalDate dataDevolucaoEfetiva;
 	
 	public Emprestimo() {
 		pessoa = new Pessoa();
 		livro = new Livro();
-//		this.dataRetirada = LocalDate.now();
-//		this.dataDevolucaoPrevista = dataRetirada.plusDays(4);
+		this.dataRetirada = LocalDate.now();
 	}
 
 	
@@ -67,28 +63,16 @@ public class Emprestimo {
 	public void setLivro(Livro livro) {
 		this.livro = livro;
 	}
-//	public LocalDate getDataRetirada() {
-//		return dataRetirada;
-//	}
-//	public void setDataRetirada(LocalDate dataRetirada) {
-//		this.dataRetirada = dataRetirada;
-//	}
-//	public LocalDate getDataDevolucaoPrevista() {
-//		return dataDevolucaoPrevista;
-//	}
-//	public void setDataDevolucaoPrevista(LocalDate dataDevolucaoPrevista) {
-//		this.dataDevolucaoPrevista = dataDevolucaoPrevista;
-//	}
-//	public LocalDate getDataDevolucaoEfetiva() {
-//		return dataDevolucaoEfetiva;
-//	}
-//	public void setDataDevolucaoEfetiva(LocalDate dataDevolucaoEfetiva) {
-//		this.dataDevolucaoEfetiva = dataDevolucaoEfetiva;
-//	}
-	public Integer getDiasEmAtraso() {
-		return diasEmAtraso;
+	public LocalDate getDataRetirada() {
+		return dataRetirada;
 	}
-	public void setDiasEmAtraso(Integer diasEmAtraso) {
-		this.diasEmAtraso = diasEmAtraso;
+	public void setDataRetirada(LocalDate dataRetirada) {
+		this.dataRetirada = dataRetirada;
+	}
+	public LocalDate getDataDevolucaoEfetiva() {
+		return dataDevolucaoEfetiva;
+	}
+	public void setDataDevolucaoEfetiva(LocalDate dataDevolucaoEfetiva) {
+		this.dataDevolucaoEfetiva = dataDevolucaoEfetiva;
 	}
 }

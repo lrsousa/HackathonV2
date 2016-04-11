@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import com.stefanini.hackathon2.entidades.Emprestimo;
 
@@ -18,11 +19,13 @@ public class EmprestimoRepositorio {
 	}
 
 	public List<Emprestimo> todosEmprestimos() {
-		return entityManager.createQuery("select e from " + Emprestimo.class.getSimpleName() + " e").getResultList();
+		List<Emprestimo> emprestimos = entityManager.createQuery("select e from " + Emprestimo.class.getSimpleName() + " e").getResultList();
+		return  emprestimos;
 	}
 
 	public void remover(Emprestimo emprestimo) {
-		entityManager.remove(entityManager.merge(emprestimo));
+		entityManager.createQuery("delete from " + Emprestimo.class.getSimpleName() + " where id=:paramIdEmprestimo")
+							.setParameter("paramIdEmprestimo", emprestimo.getId()).executeUpdate();
 	}
 	
 	public void removerPorId(Integer id) {

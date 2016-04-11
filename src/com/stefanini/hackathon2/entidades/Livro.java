@@ -9,7 +9,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -25,7 +24,8 @@ public class Livro {
 	@Column(nullable=false)
 	private Integer paginas;
 	
-	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER, mappedBy="livro")
+//	@JoinColumn(name="idLivro")
+	@OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER, mappedBy="livro")
 	private List<Emprestimo> emprestimos;
 	
 	public Livro() {

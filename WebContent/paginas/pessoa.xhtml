@@ -33,18 +33,15 @@
 					
 					<p:dataTable id="tabelaDePessoas" var="pessoa" value="#{pessoaManagedBean.listaDePessoasCadastradas}"
 						emptyMessage="Não existem pessoas cadastrados" style="padding-top:20px;">
-						
-						<p:column headerText="Id">
-				    	    <h:outputText value="#{pessoa.id}" />
+
+					    <p:column headerText="Cpf">
+				    	    <h:outputText value="#{pessoa.cpf}" />
 					    </p:column>
 					    
 					    <p:column headerText="Nome">
 				    	    <h:outputText value="#{pessoa.nome}" />
 					    </p:column>
 					    
-					    <p:column headerText="Cpf">
-				    	    <h:outputText value="#{pessoa.cpf}" />
-					    </p:column>
 					    
 					    <p:column headerText="Ações" style="text-align: center">
 					    	<p:commandButton icon="fa fa-fw fa-edit" title="Editar Pessoa" update="pessoaForm" action="#{pessoaManagedBean.setPessoa(pessoa)}" />

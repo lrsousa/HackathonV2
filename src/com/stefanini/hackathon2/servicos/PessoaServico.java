@@ -15,7 +15,7 @@ public class PessoaServico {
 	
 	@Transacional
 	public void salvar(Pessoa pessoa) {
-		if (pessoa.getId() == null) {
+		if (pessoa.getCpf() == null) {
 			repositorio.inserir(pessoa);
 		} else {
 			repositorio.atualizar(pessoa);
