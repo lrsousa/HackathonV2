@@ -18,7 +18,7 @@ public class Pessoa {
 	private String nome;
 	
 //	@JoinColumn(name="idPessoa")
-	@OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER, mappedBy="pessoa")
+	@OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.LAZY, mappedBy="pessoa")
 	private List<Emprestimo> emprestimos;
 
 	public Pessoa(){}

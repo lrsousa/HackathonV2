@@ -5,7 +5,7 @@ import javax.faces.context.FacesContext;
 
 public class Mensageiro {
 
-	public static void nootificaErro(String mensagemDeErro, String detalhes){
+	public static void notificaErro(String mensagemDeErro, String detalhes){
 		notificar(FacesMessage.SEVERITY_ERROR, mensagemDeErro, detalhes);
 	}
 	

@@ -23,11 +23,11 @@ public class Emprestimo {
 	private Integer idEmprestimo;
 	
 	@ManyToOne(cascade=CascadeType.REFRESH, fetch = FetchType.EAGER)
-	@JoinColumn(name="cpf", nullable=true)
+	@JoinColumn(name="cpf", nullable=false)
 	private Pessoa pessoa;
 	
 	@ManyToOne(cascade=CascadeType.REFRESH, fetch = FetchType.EAGER)
-	@JoinColumn(name="idLivro", nullable=true)
+	@JoinColumn(name="idLivro", nullable=false)
 	private Livro livro;
 
 	@Column(nullable=false)

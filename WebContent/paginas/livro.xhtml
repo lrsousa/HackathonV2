@@ -40,33 +40,34 @@
 						<p:commandButton value="Limpar" process="@this" update="@form" action="#{livroManagedBean.limpar()}" icon="fa fa-fw fa-eraser" />
 					</h:form>
 					
-					<p:dataTable id="tabelaDeLivros" var="livro" value="#{livroManagedBean.listaDeLivrosCadastrados}"
-						emptyMessage="Não existem livros cadastrados" style="padding-top:20px;">
-						<p:column headerText="Id">
-				    	    <h:outputText value="#{livro.id}" />
-					    </p:column>
-					    <p:column headerText="Nome">
-				    	    <h:outputText value="#{livro.nome}" />
-					    </p:column>
-					    <p:column headerText="Autor">
-				    	    <h:outputText value="#{livro.autor}" />
-					    </p:column>
-					    <p:column headerText="Páginas">
-				    	    <h:outputText value="#{livro.paginas}" />
-					    </p:column>
-					    <p:column headerText="Ações" style="text-align: center">
-					    	<p:commandButton icon="fa fa-fw fa-edit" title="Editar Livro" update="livroForm" action="#{livroManagedBean.setLivro(livro)}" />
-					    	<p:commandButton icon="fa fa-fw fa-trash" title="Deletar Livro" update="tabelaDeLivros livroForm" action="#{livroManagedBean.deletar(livro)}">
-					    		<p:confirm header="Confirmação" message="Deseja deletar o Livro?" icon="ui-icon-alert" />
-					    	</p:commandButton>
-					    	
-					    	<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-						        <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-						        <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-						    </p:confirmDialog>
-					    </p:column>
-					</p:dataTable>
-				
+					<div style="height: 240px; overflow: auto;">
+						<p:dataTable id="tabelaDeLivros" var="livro" value="#{livroManagedBean.listaDeLivrosCadastrados}"
+							emptyMessage="Não existem livros cadastrados" style="padding-top:20px;">
+							<p:column headerText="Id">
+					    	    <h:outputText value="#{livro.id}" />
+						    </p:column>
+						    <p:column headerText="Nome">
+					    	    <h:outputText value="#{livro.nome}" />
+						    </p:column>
+						    <p:column headerText="Autor">
+					    	    <h:outputText value="#{livro.autor}" />
+						    </p:column>
+						    <p:column headerText="Páginas">
+					    	    <h:outputText value="#{livro.paginas}" />
+						    </p:column>
+						    <p:column headerText="Ações" style="text-align: center">
+						    	<p:commandButton icon="fa fa-fw fa-edit" title="Editar Livro" update="livroForm" action="#{livroManagedBean.setLivro(livro)}" />
+						    	<p:commandButton icon="fa fa-fw fa-trash" title="Deletar Livro" update="tabelaDeLivros livroForm" action="#{livroManagedBean.deletar(livro)}">
+						    		<p:confirm header="Confirmação" message="Deseja deletar o Livro?" icon="ui-icon-alert" />
+						    	</p:commandButton>
+						    	
+						    	<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+							        <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+							        <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+							    </p:confirmDialog>
+						    </p:column>
+						</p:dataTable>
+					</div>
 				</p:layoutUnit>
 			
 			</p:layout>

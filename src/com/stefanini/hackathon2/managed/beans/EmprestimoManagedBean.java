@@ -1,6 +1,5 @@
 package com.stefanini.hackathon2.managed.beans;
 
-import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -80,29 +79,9 @@ public class EmprestimoManagedBean {
 		}		
 		try {
 			localDateRetirada = LocalDate.parse(dataRetiradaString);
-			return String.valueOf(calcIntervaloDias(localDateRetirada, localDateEntrega));
+			return String.valueOf(servico.calcIntervaloDias(localDateRetirada, localDateEntrega));
 		} catch (Exception e) {
 			return "0";
 		}
-	}
-	
-	private int calcIntervaloDias(LocalDate inicio, LocalDate fim) {
-		LocalDate diaDaSemana = inicio;
-		Integer qtdDias = 0;
-
-		if(fim == null) {
-			fim = LocalDate.now();
-		}
-		
-		while(diaDaSemana.isBefore(fim)) {
-			if(diaDaSemana.getDayOfWeek() == DayOfWeek.FRIDAY) {
-				diaDaSemana = diaDaSemana.plusDays(3);
-			} else {
-				diaDaSemana = diaDaSemana.plusDays(1);
-			}
-			qtdDias++;
-		}
-//		qtdDias = (int) ChronoUnit.DAYS.between(inicio, fim);
-		return qtdDias <= 4 ? 0 : qtdDias - 4;
 	}
 }
