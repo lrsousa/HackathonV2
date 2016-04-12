@@ -8,7 +8,7 @@
 	<welcome-file-list>
 		<welcome-file>paginas/principal.xhtml</welcome-file>
 	</welcome-file-list>
-
+	
 	<servlet>
 		<servlet-name>Faces Servlet</servlet-name>
 		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
@@ -24,5 +24,9 @@
 	   <param-name>primefaces.FONT_AWESOME</param-name>
 	   <param-value>true</param-value>
 	</context-param>
-
+	
+	<error-page>
+	    <error-code>404</error-code>
+	    <location>/paginas/error.xhtml</location>
+	</error-page>
 </web-app>
