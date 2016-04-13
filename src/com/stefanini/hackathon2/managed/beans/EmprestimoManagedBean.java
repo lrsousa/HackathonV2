@@ -1,6 +1,7 @@
 package com.stefanini.hackathon2.managed.beans;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -8,6 +9,7 @@ import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 
 import com.stefanini.hackathon2.entidades.Emprestimo;
+import com.stefanini.hackathon2.entidades.Livro;
 import com.stefanini.hackathon2.servicos.EmprestimoServico;
 import com.stefanini.hackathon2.util.Mensageiro;
 
@@ -16,14 +18,25 @@ import com.stefanini.hackathon2.util.Mensageiro;
 public class EmprestimoManagedBean {
 	private Emprestimo emprestimo;
 	private List<Emprestimo> listaDeEmprestimosCadastrados;
-
+	
+	
 	@Inject
 	private EmprestimoServico servico;
 	
 	public EmprestimoManagedBean(){}
 	
 	public void salvar() {
+		List<Livro> livrosParaRetirada = new ArrayList<Livro>();
 		Emprestimo emprestimo = getEmprestimo();
+		for (Livro livro : emprestimo.getLivros()) {
+			if(livro.getEstoque().getQuantidadeEstoque() > 1) {
+				Mensageiro.notificaInformacao(livro.getNome(), "disponível");
+				livro.getEstoque().setQuantidadeEstoque(livro.getEstoque().getQuantidadeEstoque() - 1);
+				livrosParaRetirada.add(livro);
+			}
+		}
+		emprestimo.setLivros(livrosParaRetirada);
+		
 		servico.salvar(emprestimo);
 		Mensageiro.notificaInformacao("Parabéns", "Emprestimo cadastrado com sucesso");
 		carregarListaDeEmprestimos();

@@ -25,7 +25,7 @@ public class EmprestimoRepositorio {
 
 	public void remover(Emprestimo emprestimo) {
 		entityManager.createQuery("delete from " + Emprestimo.class.getSimpleName() + " where id=:paramIdEmprestimo")
-							.setParameter("paramIdEmprestimo", emprestimo.getId()).executeUpdate();
+							.setParameter("paramIdEmprestimo", emprestimo.getIdEmprestimo()).executeUpdate();
 	}
 	
 	public void removerPorId(Integer id) {

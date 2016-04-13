@@ -17,7 +17,6 @@ public class Pessoa {
 	@Column(nullable=false)
 	private String nome;
 	
-//	@JoinColumn(name="idPessoa")
 	@OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.LAZY, mappedBy="pessoa")
 	private List<Emprestimo> emprestimos;
 

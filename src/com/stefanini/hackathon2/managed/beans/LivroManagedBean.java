@@ -20,8 +20,7 @@ public class LivroManagedBean {
 	@Inject
 	private LivroServico servico;
 	
-	public LivroManagedBean() {
-	}
+	public LivroManagedBean() {}
 	
 	public void salvar() {
 		servico.salvar(getLivro());
@@ -46,9 +45,10 @@ public class LivroManagedBean {
 	}
 	
 	public List<Livro> getListaDeLivrosCadastrados() {
-		if (listaDeLivrosCadastrados == null) {
-			carregaListaDeLivros();
-		}
+		carregaListaDeLivros();
+//		if (listaDeLivrosCadastrados == null || listaDeLivrosCadastrados.isEmpty()) {
+//			carregaListaDeLivros();
+//		}
 		return listaDeLivrosCadastrados;
 	}
 	

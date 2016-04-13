@@ -2,6 +2,7 @@ package com.stefanini.hackathon2.servicos;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -22,7 +23,7 @@ public class EmprestimoServico {
 	
 	@Transacional
 	public void salvar(Emprestimo emprestimo) {
-		if (emprestimo.getId() == null) {
+		if (emprestimo.getIdEmprestimo() == null) {
 			repositorio.inserir(emprestimo);
 		} else {
 			repositorio.atualizar(emprestimo);

@@ -15,36 +15,40 @@
 				</p:layoutUnit>
 
 				<p:layoutUnit position="center">
-
 					<h:form id="livroForm">				
 						<p:growl id="growl" showDetail="true" sticky="false" life="4000" />  
 						
 						<p:panelGrid columns="3">
 							<p:outputLabel for="nome" value="Nome:"/>
 							<p:inputText id="nome" requiredMessage="Campo obrigatório" required="true" 
-								value="#{livroManagedBean.livro.nome}" />
+								value="#{estoqueManagedBean.estoque.livro.nome}" />
 							<p:message for="nome" />
 		
 							<p:outputLabel for="autor" value="Autor:"/>
 							<p:inputText id="autor" requiredMessage="Campo obrigatório" required="true" 
-								value="#{livroManagedBean.livro.autor}" />
+								value="#{estoqueManagedBean.estoque.livro.autor}" />
 							<p:message for="autor" />
 						
 							<p:outputLabel for="paginas" value="Páginas:"/>
 							<p:inputMask maxlength="4" id="paginas" requiredMessage="Campo obrigatório" mask="9?999" required="true" 
-								value="#{livroManagedBean.livro.paginas}" />
+								value="#{estoqueManagedBean.estoque.livro.paginas}" />
 							<p:message for="paginas" />
+							
+							<p:outputLabel for="qtdEstoque" value="Qtd. Estoque"/>
+							<p:inputMask maxlength="3" id="qtdEstoque" requiredMessage="Campo obrigatório" mask="9?999" required="true" 
+								value="#{estoqueManagedBean.estoque.quantidadeAcervo}" />
+							<p:message for="qtdEstoque" />
 						</p:panelGrid>
 					
-						<p:commandButton value="Salvar" process="@form" update="@form tabelaDeLivros" action="#{livroManagedBean.salvar()}" icon="fa fa-fw fa-save" />
-						<p:commandButton value="Limpar" process="@this" update="@form" action="#{livroManagedBean.limpar()}" icon="fa fa-fw fa-eraser" />
+						<p:commandButton value="Salvar" process="@form" oncomplete="#{livroManagedBean.listaDeLivrosCadastrados}" update="@form tabelaDeLivros" action="#{estoqueManagedBean.salvar()}" icon="fa fa-fw fa-save" />
+						<p:commandButton value="Limpar" process="@this" update="@form" action="#{estoqueManagedBean.limpar()}" icon="fa fa-fw fa-eraser" />
 					</h:form>
 					
 					<div style="height: 240px; overflow: auto;">
 						<p:dataTable id="tabelaDeLivros" var="livro" value="#{livroManagedBean.listaDeLivrosCadastrados}"
 							emptyMessage="Não existem livros cadastrados" style="padding-top:20px;">
 							<p:column headerText="Id">
-					    	    <h:outputText value="#{livro.id}" />
+					    	    <h:outputText value="#{livro.idLivro}" />
 						    </p:column>
 						    <p:column headerText="Nome">
 					    	    <h:outputText value="#{livro.nome}" />
@@ -54,6 +58,9 @@
 						    </p:column>
 						    <p:column headerText="Páginas">
 					    	    <h:outputText value="#{livro.paginas}" />
+						    </p:column>
+						    <p:column headerText="Estoque">
+					    	    <h:outputText value="#{livro.estoque.quantidadeEstoque}" />
 						    </p:column>
 						    <p:column headerText="Ações" style="text-align: center">
 						    	<p:commandButton icon="fa fa-fw fa-edit" title="Editar Livro" update="livroForm" action="#{livroManagedBean.setLivro(livro)}" />

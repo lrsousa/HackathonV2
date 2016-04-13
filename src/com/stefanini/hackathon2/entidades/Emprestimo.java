@@ -1,6 +1,7 @@
 package com.stefanini.hackathon2.entidades;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 import com.stefanini.hackathon2.conversores.LocalDateAttributeConverter;
@@ -22,14 +24,14 @@ public class Emprestimo {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer idEmprestimo;
 	
+	@ManyToMany(cascade = CascadeType.REFRESH)
+	@JoinColumn(name = "idLivro", nullable = false)
+	private List<Livro> livros;
+	
 	@ManyToOne(cascade=CascadeType.REFRESH, fetch = FetchType.EAGER)
 	@JoinColumn(name="cpf", nullable=false)
 	private Pessoa pessoa;
 	
-	@ManyToOne(cascade=CascadeType.REFRESH, fetch = FetchType.EAGER)
-	@JoinColumn(name="idLivro", nullable=false)
-	private Livro livro;
-
 	@Column(nullable=false)
 	@Convert(converter = LocalDateAttributeConverter.class)
 	private LocalDate dataRetirada;
@@ -40,28 +42,14 @@ public class Emprestimo {
 	
 	public Emprestimo() {
 		pessoa = new Pessoa();
-		livro = new Livro();
 		this.dataRetirada = LocalDate.now();
 	}
-
 	
-	public Integer getId() {
+	public Integer getIdEmprestimo() {
 		return idEmprestimo;
 	}
-	public void setId(Integer id) {
+	public void setIdEmprestimo(Integer id) {
 		this.idEmprestimo = id;
-	}
-	public Pessoa getPessoa() {
-		return pessoa;
-	}
-	public void setPessoa(Pessoa pessoa) {
-		this.pessoa = pessoa;
-	}
-	public Livro getLivro() {
-		return livro;
-	}
-	public void setLivro(Livro livro) {
-		this.livro = livro;
 	}
 	public LocalDate getDataRetirada() {
 		return dataRetirada;
@@ -74,5 +62,17 @@ public class Emprestimo {
 	}
 	public void setDataDevolucaoEfetiva(LocalDate dataDevolucaoEfetiva) {
 		this.dataDevolucaoEfetiva = dataDevolucaoEfetiva;
+	}
+	public List<Livro> getLivros() {
+		return livros;
+	}
+	public void setLivros(List<Livro> livros) {
+		this.livros = livros;
+	}
+	public Pessoa getPessoa() {
+		return pessoa;
+	}
+	public void setPessoa(Pessoa pessoa) {
+		this.pessoa = pessoa;
 	}
 }
