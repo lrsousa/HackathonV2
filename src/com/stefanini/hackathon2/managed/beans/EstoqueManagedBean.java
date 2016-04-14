@@ -22,8 +22,10 @@ public class EstoqueManagedBean {
 	public EstoqueManagedBean() {}
 	
 	public void salvar() {
-		getEstoque().setQuantidadeEstoque(getEstoque().getQuantidadeAcervo());
-		servico.salvar(getEstoque());
+		if(getEstoque().getIdEstoque() == null) {
+			getEstoque().setQuantidadeEstoque(getEstoque().getQuantidadeAcervo());
+			servico.salvar(getEstoque());
+		}
 		Mensageiro.notificaInformacao("Parabéns!", "Estoque salvo com sucesso!");
 		limpar();
 	}

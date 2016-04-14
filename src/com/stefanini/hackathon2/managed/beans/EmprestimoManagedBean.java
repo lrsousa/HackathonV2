@@ -35,10 +35,14 @@ public class EmprestimoManagedBean {
 				livrosParaRetirada.add(livro);
 			}
 		}
-		emprestimo.setLivros(livrosParaRetirada);
-		
-		servico.salvar(emprestimo);
-		Mensageiro.notificaInformacao("Parabéns", "Emprestimo cadastrado com sucesso");
+		if(!livrosParaRetirada.isEmpty()) {
+			emprestimo.setLivros(livrosParaRetirada);
+			servico.salvar(emprestimo);
+			Mensageiro.notificaInformacao("Parabéns", "Emprestimo cadastrado com sucesso");
+			
+		} else {
+			Mensageiro.notificaInformacao("My bad.", "Nenhum dos livros está disponível");
+		}
 		carregarListaDeEmprestimos();
 		limpar();
 	}
@@ -80,6 +84,9 @@ public class EmprestimoManagedBean {
 	}
 	
 	public void finalizarEmprestimo(Emprestimo emprestimo) {
+		for (Livro livro : emprestimo.getLivros()) {
+			livro.getEstoque().setQuantidadeEstoque(livro.getEstoque().getQuantidadeEstoque() + 1);
+		}
 		emprestimo.setDataDevolucaoEfetiva(LocalDate.now());
 		servico.salvar(emprestimo);
 	}

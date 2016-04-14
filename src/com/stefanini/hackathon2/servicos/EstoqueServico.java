@@ -5,6 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import com.stefanini.hackathon2.entidades.Estoque;
+import com.stefanini.hackathon2.entidades.Livro;
 import com.stefanini.hackathon2.repositorios.EstoqueRepositorio;
 import com.stefanini.hackathon2.transacao.Transacional;
 
@@ -28,6 +29,13 @@ public class EstoqueServico {
 
 	public List<Estoque> carregaTodoEstoqueDoBanco() {
 		return repositorio.todosEstoques();
+	}
+
+	public void atualizarListaEstoque(List<Livro> livros) {
+		for (Livro livro : livros) {
+			salvar(livro.getEstoque());
+		}
+		
 	}
 
 }

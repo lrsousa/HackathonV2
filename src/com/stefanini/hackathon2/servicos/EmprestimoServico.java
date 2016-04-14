@@ -21,11 +21,15 @@ public class EmprestimoServico {
 	@Inject
 	private EmprestimoRepositorio repositorio;
 	
+	@Inject
+	private EstoqueServico servicoEstoque;
+	
 	@Transacional
 	public void salvar(Emprestimo emprestimo) {
 		if (emprestimo.getIdEmprestimo() == null) {
 			repositorio.inserir(emprestimo);
 		} else {
+			servicoEstoque.atualizarListaEstoque(emprestimo.getLivros());
 			repositorio.atualizar(emprestimo);
 		}
 	}
