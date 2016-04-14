@@ -7,13 +7,17 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
 
 @Entity
+@Inheritance(strategy=InheritanceType.JOINED)
 public class Pessoa {
 	
 	@Id
 	private String cpf;
+	
 	@Column(nullable=false)
 	private String nome;
 	
